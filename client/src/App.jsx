@@ -1,19 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './style/global.css'
+import { useState } from 'react';
+// components
+import { Header, AddNewContact } from './components';
+// style
+import './style/global.css';
+import { BsPlus } from 'react-icons/bs';
 
 function App() {
-  const [count, setCount] = useState(0)
 
+  const [showAddContact, setShowAddContact] = useState(false);
         
   return (
-    <div className="flex flex-col justify-between items-center py-24 w-full">
-      <h1 className='text-xl'>{count}</h1>
-      <button onClick={() => setCount((count) => count + 1)}>
-        MORE ONE
-      </button>
-    </div>
-  )
-}
+    <>
+      <Header/>
+      <div className="flex flex-col p-8 w-full">  
+        { showAddContact && <AddNewContact setShowAddContact={setShowAddContact}/>}
 
-export default App
+        <button 
+          className='absolute bottom-7 right-7 flex items-center justify-center w-[70px] h-[70px] bg-orange-500 rounded-full text-4xl text-white'
+          onClick={() => setShowAddContact(true)}
+        >
+          <BsPlus/>
+        </button>   
+      </div>
+    </>
+  );
+};
+
+export default App;

@@ -24,9 +24,9 @@ function App() {
       <div className="flex flex-col p-8 w-full">  
         { showAddContact && <AddNewContact setShowAddContact={setShowAddContact}/>}
 
-        { typeof listContacts !== undefined && 
+        { typeof listContacts !== 'undefined' && 
             listContacts.map((item, index) => {
-              return <h1></h1>
+              return <h1>{item.name}</h1>
             })
         } 
 

@@ -25,6 +25,15 @@ app.post('/register', (req, res) => {
 
 });
 
+app.get('/getContacts', (req, res) => {
+  let SQL = 'SELECT * from infos';
+
+  db.query(SQL, (err, result) => {
+    if (err) console.log(err)
+    else res.send(result)
+  })
+})
+
 app.listen(3001, () => {
   console.log('Server is running...');
 });

@@ -57,4 +57,48 @@ app.post('/register', (req, res) => {
 });
 ```
 
--
+- Criamos o método **GET** agora. Dentro dele uma variavel com cogido SQL selecionando toda a tabela, e depois fazermos o query() para conversar com o banco e pegar os dados, e mandamos ele para o client side usando .send()
+
+```js
+app.get('/getContacts', (req, res) => {
+  let SQL = 'SELECT * from infos';
+
+  db.query(SQL, (err, result) => {
+    if (err) console.log(err)
+    else res.send(result)
+  })
+})
+```
+e la no front, no arquivo principal "App.jsx" fazemos um **useEffect** para coletar esses dados ao abrir o página.
+
+```js
+useEffect(() => {
+  Axios.get('http://localhost:3001/getContacts').then(
+    (response) => console.log(response) 
+  )
+}, [])
+```
+
+- Criamos um state para receber os dados;
+```js
+const [listContacts, setListContacts] = useState();
+```
+e atualizamos o **useEffect** com o **setListContacts(response.data)**
+
+```js
+useEffect(() => {
+  Axios.get('http://localhost:3001/getContacts').then(
+    (response) => setListContacts(response.data)
+  )
+}, []);
+```
+
+- Agora vamos fazer um map() no array de objetos que são retornado com os dados. Porém na primeira entrada não havera informações, então fazemos uma condição para não fazer o map() de um array vazio e retornar um erro;
+
+```js
+{ typeof listContacts !== undefined && 
+  listContacts.map((item, index) => {
+    return <h1></h1>
+  })
+} 
+```

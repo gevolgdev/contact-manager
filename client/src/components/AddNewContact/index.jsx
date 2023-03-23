@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import Axios from 'axios';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 // icon
 import { IoIosClose } from 'react-icons/io'
 
@@ -14,10 +14,9 @@ export default function AddNewContact() {
       [event.target.name]: event.target.value
     }));
   };
-  console.log()
 
   function postContacts() {
-    Axios.post('http://localhost:3001/register', {
+    axios.post('http://localhost:3001/register', {
       name: contact.name,
       email: contact.email,
       tel: contact.tel,

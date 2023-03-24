@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 // components
-import { Header, AddNewContact } from './components';
+import { Header, AddNewContact, Contact } from './components';
 // style
 import './style/global.css';
 import { BsPlus } from 'react-icons/bs';
@@ -23,14 +23,23 @@ function App() {
       <Header/>
       <div className="flex flex-col p-8 w-full">  
         { showAddContact && <AddNewContact setShowAddContact={setShowAddContact}/>}
-
-        { typeof listContacts !== 'undefined' && 
-            listContacts.map((item, index) => {
-              return <h1>{item.name}</h1>
+        
+        <div className='flex flex-auto flex-wrap gap-14'>
+          { typeof listContacts !== 'undefined' && 
+            listContacts.map((item) => {
+              return (
+                <Contact
+                  key={item.id}
+                  name={item.name}
+                  email={item.email}
+                  tel={item.tel}
+                />
+              )
             })
-        } 
+          } 
+        </div>
 
-        <button 
+        <button
           className='absolute bottom-7 right-7 flex items-center justify-center w-[70px] h-[70px] bg-orange-500 rounded-full text-4xl text-white'
           onClick={() => setShowAddContact(true)}
         >

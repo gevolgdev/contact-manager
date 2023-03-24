@@ -96,7 +96,7 @@ useEffect(() => {
 - Agora vamos fazer um map() no array de objetos que são retornado com os dados. Porém na primeira entrada não havera informações, então fazemos uma condição para não fazer o map() de um array vazio e retornar um erro;
 
 ```js
-{ typeof listContacts !== undefined && 
+{ typeof listContacts !== 'undefined' && 
   listContacts.map((item, index) => {
     return <h1></h1>
   })

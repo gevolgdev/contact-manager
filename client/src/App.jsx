@@ -40,7 +40,7 @@ function App() {
         </div>
 
         <button
-          className='fixed bottom-7 right-7 flex items-center justify-center w-[70px] h-[70px] bg-orange-500 rounded-full text-4xl text-white'
+          className='fixed bottom-7 right-7 flex items-center justify-center w-[70px] h-[70px] bg-green-600 rounded-full text-4xl text-white'
           onClick={() => setShowAddContact(true)}
         >
           <BsPlus/>

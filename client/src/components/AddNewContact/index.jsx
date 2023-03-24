@@ -4,7 +4,7 @@ import axios from 'axios';
 import { IoIosClose } from 'react-icons/io'
 
 
-export default function AddNewContact() {
+export default function AddNewContact({setShowAddContact}) {
 
   const [contact, setContact] = useState({});
 
@@ -23,6 +23,9 @@ export default function AddNewContact() {
     }).then((response) => {
       console.log(response)
     });
+
+    setContact({});
+    document.location.reload()
   };
 
   const inputs = [
@@ -32,9 +35,9 @@ export default function AddNewContact() {
   ];
 
   return (
-    <div className='flex flex-col w-full mx-auto p-6 rounded-lg bg-gray-200 drop-shadow-lg md:w-[400px]'>
-      <h1 className='text-2xl font-bold text-gray-900'>Adicionar contato</h1>
-      <div className='flex flex-col gap-3 mt-5'>
+    <div className='absolute right-7 bottom-[120px] flex flex-col w-full mx-auto px-6 py-12 rounded-lg bg-gray-200 drop-shadow-lg md:w-[400px] max-sm:fixed max-sm:bottom-auto max-sm:right-0 max-sm:w-full max-sm:h-screen'>
+      <h1 className='text-4xl font-bold text-gray-900'>Adicionar contato</h1>
+      <div className='flex flex-col gap-3 mt-10'>
         {inputs.map((item, index) => 
           <input
             key={index}
@@ -42,13 +45,13 @@ export default function AddNewContact() {
             type='text'
             name={item.name}
             placeholder={item.placeholder}
-            className='px-4 py-2 outline-gray-500 font-["Inter Tight"] rounded-sm'
+            className='px-4 py-3 outline-gray-500 font-["Inter Tight"] rounded-sm placeholder:italic placeholder:text-sm'
           />
         )}
       </div>
       <button
         onClick={() => postContacts()}
-        className='mt-7 py-2 bg-green-400 font-bold text-gray-800'
+        className='mt-7 py-3 bg-green-400 font-bold text-gray-800'
       >
         Adicionar
       </button>

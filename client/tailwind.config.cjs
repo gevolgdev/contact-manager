@@ -5,6 +5,7 @@ module.exports = {
     
     './src/components/Header/index.jsx',
     './src/components/AddNewContact/index.jsx',
+    './src/components/Contact/index.jsx',
   ],
   theme: {
     extend: {},

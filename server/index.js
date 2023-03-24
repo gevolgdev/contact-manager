@@ -21,18 +21,17 @@ app.post('/register', (req, res) => {
 
   db.query(SQL,[name, email, tel], (err, res) => {
     console.log(err)
-  })
-
+  });
 });
 
 app.get('/getContacts', (req, res) => {
-  let SQL = 'SELECT * from infos';
+  let SQL = 'SELECT * FROM `contact-schema`.infos';
 
   db.query(SQL, (err, result) => {
     if (err) console.log(err)
     else res.send(result)
-  })
-})
+  });
+});
 
 app.listen(3001, () => {
   console.log('Server is running...');

@@ -9,14 +9,13 @@ import { BsPlus } from 'react-icons/bs';
 function App() {
 
   const [showAddContact, setShowAddContact] = useState(false);
-  const [listContacts, setListContacts] = useState();
+  const [listContacts, setListContacts] = useState([]);
 
   useEffect(() => {
     axios.get('http://localhost:3001/getContacts').then(
-      (response) => setListContacts(response.data)
+      (response) => setListContacts(response.data.reverse())
     )
   }, []);
-
         
   return (
     <>
@@ -24,18 +23,18 @@ function App() {
       <div className="flex flex-col p-8 w-full max-sm:px-4 max-sm:pb-[150px]">  
         { showAddContact && <AddNewContact setShowAddContact={setShowAddContact}/>}
         
+        Voce possui {listContacts.length} contatos.
         <div className='flex flex-auto flex-wrap gap-14'>
           { typeof listContacts !== 'undefined' && 
-            listContacts.reverse().map((item) => {
-              return (
-                <Contact
-                  key={item.id}
-                  name={item.name}
-                  email={item.email}
-                  tel={item.tel}
-                />
-              )
-            })
+            listContacts.map((item, index) => 
+              <Contact
+                key={item.id}
+                name={item.name}
+                email={item.email}
+                tel={item.tel}
+                number={index}
+              />
+            )
           } 
         </div>
 

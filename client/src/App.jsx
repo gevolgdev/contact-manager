@@ -22,13 +22,14 @@ function App() {
       <Header/>
       <div className="flex flex-col p-8 w-full max-sm:px-4 max-sm:pb-[150px]">  
         { showAddContact && <AddNewContact setShowAddContact={setShowAddContact}/>}
-        
-        Voce possui {listContacts.length} contatos.
+
+        <span className='mb-5'>Voce possui {listContacts.length} contatos.</span>
         <div className='flex flex-auto flex-wrap gap-14'>
           { typeof listContacts !== 'undefined' && 
             listContacts.map((item, index) => 
               <Contact
                 key={item.id}
+                id={item.id}
                 name={item.name}
                 email={item.email}
                 tel={item.tel}

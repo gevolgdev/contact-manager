@@ -21,7 +21,7 @@ function App() {
   return (
     <>
       <Header/>
-      <div className="flex flex-col p-8 w-full">  
+      <div className="flex flex-col p-8 w-full max-sm:px-4">  
         { showAddContact && <AddNewContact setShowAddContact={setShowAddContact}/>}
         
         <div className='flex flex-auto flex-wrap gap-14'>

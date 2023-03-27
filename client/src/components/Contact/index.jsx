@@ -1,3 +1,6 @@
+// Axios
+import axios from 'axios'
+// icons
 import { useState } from 'react';
 import { HiOutlineMail } from 'react-icons/hi';
 import { MdWhatsapp, MdEditSquare } from 'react-icons/md';
@@ -9,9 +12,10 @@ export default function Contact(props) {
 
   const [openEdit, setOpenEdit] = useState(false);
 
-  // function edit() {
-
-  // }
+  function deleteContact() {
+    axios.delete(`http://localhost:3001/delete/${props.id}`)
+    document.location.reload()
+  };
 
   return (
     <>
@@ -45,7 +49,9 @@ export default function Contact(props) {
             <MdEditSquare/> Editar
           </button>
 
-          <button className='flex flex-1 flex-row items-center justify-center gap-2 bg-red-500 text-gray-100 py-2'>
+          <button
+            onClick={deleteContact}
+            className='flex flex-1 flex-row items-center justify-center gap-2 bg-red-500 text-gray-100 py-2'>
             <BiTrashAlt/> Apagar
           </button>
         </div>

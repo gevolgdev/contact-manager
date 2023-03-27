@@ -8,7 +8,7 @@ export default function Contact(props) {
     <div className="flex flex-col p-8 w-[350px] bg-gray-800 rounded-lg max-sm:w-full">
       <div className='flex flex-col'>
         <h2 className="text-3xl text-white font-bold">
-          {props.name}
+          {props.number + 1}. {props.name}
         </h2>
         <div className="w-full h-[1px] bg-gray-400 my-5"/>
         <span className="flex flex-row items-center gap-2 text-lg text-white mb-2">

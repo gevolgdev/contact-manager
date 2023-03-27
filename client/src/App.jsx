@@ -26,7 +26,7 @@ function App() {
         
         <div className='flex flex-auto flex-wrap gap-14'>
           { typeof listContacts !== 'undefined' && 
-            listContacts.map((item) => {
+            listContacts.reverse().map((item) => {
               return (
                 <Contact
                   key={item.id}

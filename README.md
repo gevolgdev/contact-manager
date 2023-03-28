@@ -29,7 +29,7 @@ Server side:
 - Configurar Schema (MySQL);
 
 ### Banco de dados no Node
-- Armazenar 'mysql' em uma constante e usar método creatPool() para conectar ao seu bando de dados;
+- Armazenar 'mysql' em uma constante e usar método createPool() para conectar ao seu bando de dados;
 
 ```js
 const db = mysql.createPool({

@@ -40,8 +40,8 @@ export default function EditContact(props) {
   ];
 
   return (
-    <div className='absolute right-7 bottom-[120px] flex flex-col w-full mx-auto px-6 py-12 rounded-lg bg-gray-200 drop-shadow-lg md:w-[400px] max-sm:fixed max-sm:bottom-0 max-sm:right-0 max-sm:w-full max-sm:h-screen max-sm:pt-32'>
-      <h1 className='text-4xl font-bold text-gray-900'>Editar contato</h1>
+    <div className='absolute right-7 bottom-[120px] flex flex-col w-full mx-auto px-6 py-12 rounded-lg bg-[#1C1E2E] drop-shadow-lg md:w-[400px] max-sm:fixed max-sm:bottom-0 max-sm:right-0 max-sm:w-full max-sm:h-screen max-sm:pt-32 z-20'>
+      <h1 className='text-4xl font-bold text-white'>Editar contato</h1>
       <div className='flex flex-col gap-3 mt-10'>
         {inputs.map((item, index) => 
           <input
@@ -51,7 +51,7 @@ export default function EditContact(props) {
             type='text'
             name={item.name}
             placeholder={item.placeholder}
-            className='px-4 py-3 outline-gray-500 font-["Inter Tight"] rounded-sm placeholder:italic placeholder:text-sm'
+            className='px-4 py-3 outline-gray-500 bg-slate-700 text-white font-["Inter Tight"] rounded-sm placeholder:italic placeholder:text-sm'
           />
         )}
       </div>

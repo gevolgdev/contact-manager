@@ -4,11 +4,11 @@
 Este é um software que visa organizar seus contatos de maneira mais prática e deixa-os guardado em um banco de dados.
 
 ## Algoritmo geral;
-1. Design de interface
-2. Ambiente Node/Express.js
-3. Criar banco de dados (MySQL)
-4. Promise/Axios
-5. Fazer CRUD
+1. Ambiente Node/Express.js
+2. Criar banco de dados (MySQL)
+3. Fazer CRUD
+4. Axios
+5. Design de interface
 
 ## Passo-a-passo
 
@@ -41,7 +41,7 @@ const db = mysql.createPool({
 ```
 
 ### CRUD
-- Criar método **POST**, primeiro argumento será a rota da requisição e o segundo será uma função anonima que recebe como argumento require e o result. Dentro da função anonima, coletamos os dados enviador por uma requisição HTTP pelo lado do cliente, e em seguida uma variável para armazenar o codigo SQL e passamos nele os dados. Após isso fazemos uma query() para mandar os dados ao servidor.
+- Criar método **POST**, primeiro argumento será a rota da requisição e o segundo será uma função anonima que recebe como argumento require e o result. Dentro da função anonima, coletamos os dados enviador por uma requisição HTTP pelo lado do cliente, e em seguida uma variável para armazenar o código SQL e passamos nele os dados. Após isso fazemos uma query() para mandar os dados ao servidor.
 
 ```js
 app.post('/register', (req, res) => {
@@ -57,7 +57,7 @@ app.post('/register', (req, res) => {
 });
 ```
 
-- Criamos o método **GET** agora. Dentro dele uma variavel com cogido SQL selecionando toda a tabela, e depois fazermos o query() para conversar com o banco e pegar os dados, e mandamos ele para o client side usando .send()
+- Criamos o método **GET** agora. Dentro dele uma variável com código SQL selecionando toda a tabela, e depois fazermos o query() para conversar com o banco e pegar os dados, e mandamos ele para o client side usando .send()
 
 ```js
 app.get('/getContacts', (req, res) => {
@@ -102,3 +102,82 @@ useEffect(() => {
   })
 } 
 ```
+
+#### Até aqui, nossa aplicação já está enviando e recebendo os dados e retornando eles para o usuário. Agora vamos fazer os recursos de Editar o contato e Apaga-lo.
+
+- Para editar o contato, começamos a prepara na API nosso método **PUT**.
+Recolhemos os dados do usuário, declaramos o código SQL, depois fazemos uma query para conectar ao banco de dados passamos o SQL, os valores que estão dinâmicos no código SQL e com uma função anônima retornamos o erro e o resultado. Se não ter algum erro, nos mandamos de volta o resultado com valor editado para o client side.
+
+```js
+app.put('/edit', (req, res) => {
+  const { id } = req.body;
+  const { name } = req.body;
+  const { email } = req.body;
+  const { tel } = req.body;
+
+  let SQL = 'UPDATE `contact-schema`.`infos` SET name = ?, email = ?, tel = ? WHERE id = ?'
+
+  db.query(SQL, [name, email, tel, id], (err, result)=> {
+    if(err) console.log(err)
+    else res.send(result)
+  })
+});
+```
+No front-end. Iniciamos um **useState** com um objeto dos dados do contato escolhido para edição. Com uma função para o "onChange" do input, atualizamos o objeto com os dados do contato. Após ja termos editado o contato, vamos manda isso para a API fazer seu trabalho com ele, usando uma função que chama o Axios, ele chama a rota para edição "/edit", e passa os novos valores para as chaves do DB, que será recolhida lá na API.
+
+```js
+const [editContact, setEditContact] = useState({
+  id: props.id,
+  name: props.name,
+  email: props.email,
+  tel: props.tel,
+});
+
+function handleEditContact(e) {
+  setEditContact( prevContact => ({
+    ...prevContact,
+    [e.target.name]: e.target.value
+  }))
+};
+
+function edit() {
+  axios.put('http://localhost:3001/edit', {
+    id: editContact.id,
+    name: editContact.name,
+    email: editContact.email,
+    tel: editContact.tel,
+  }).then((response) => {
+    console.log(response)
+  })
+  props.setOpenEdit(false)
+  document.location.reload()
+};
+```
+
+- Agora para apagar deletar o contato é simples. Fazemos uma rota dinâmica com o id do contato escolhido para apagar. No rota colocamos **:id**, isso ja deixa-a dinâmica e no código SQL colocamos o **WHERE id = ?**. No query é o mesmo processo repetido nos passos anteriores.
+
+```js
+app.delete('/delete/:id', (req, res) => {
+  const { id } = req.params;
+  let SQL = 'DELETE FROM `contact-schema`.`infos` WHERE id = ?';
+
+  db.query(SQL, [id], (err, result) => {
+    if (err) console.log(err);
+    else res.send(result);
+  });
+});
+```
+E no front-end nós fazemos requisição Axios e colocamos o Id que será deletado.
+
+```js
+function deleteContact() {
+  axios.delete(`http://localhost:3001/delete/${props.id}`)
+  document.location.reload()
+};
+```
+
+## 🎉 E esse foi meu primeiro projeto usando Node e MySQL. 🎉
+
+😎 Obrigado e aguardem os próximos projetos!!
+
+<a href='https://instagram.com/gevolgdev/'>Link do Reels desse projeto</a>

@@ -180,4 +180,4 @@ function deleteContact() {
 
 😎 Obrigado e aguardem os próximos projetos!!
 
-<a href='https://www.instagram.com/p/CqV4EHPNAW9/' target='blank'>Link do Reels desse projeto</a>
+<a href='https://www.instagram.com/p/CqV4EHPNAW9/' target='_blank'>Link do Reels desse projeto</a>

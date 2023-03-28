@@ -61,6 +61,12 @@ export default function EditContact(props) {
       >
         Editar
       </button>
+      <button
+        onClick={() => props.setOpenEdit(false)}
+        className='mt-4 py-3 border border-gray-500 font-bold text-gray-500'
+      >
+        Cancelar
+      </button>
     </div>
   )
 };

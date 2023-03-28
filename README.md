@@ -106,7 +106,7 @@ useEffect(() => {
 #### Até aqui, nossa aplicação já está enviando e recebendo os dados e retornando eles para o usuário. Agora vamos fazer os recursos de Editar o contato e Apaga-lo.
 
 - Para editar o contato, começamos a prepara na API nosso método **PUT**.
-Recolhemos os dados do usuário, declaramos o código SQL, depois fazemos uma query para conectar ao banco de dados passamos o SQL, os valores que estão dinâmicos no código SQL e com uma função anônima retornamos o erro e o resultado. Se não ter algum erro, nos mandamos de volta o resultado com valor editado para o client side.
+Recolhemos os dados do usuário, declaramos o código SQL, depois fazemos uma query para conectar ao banco de dados. Nela passamos o código SQL, os valores que estão dinâmicos no código SQL. Com uma função anônima retornamos o erro e o resultado. Se não ter algum erro, nos mandamos de volta o resultado com valor editado para o client side.
 
 ```js
 app.put('/edit', (req, res) => {
@@ -154,7 +154,7 @@ function edit() {
 };
 ```
 
-- Agora para apagar deletar o contato é simples. Fazemos uma rota dinâmica com o id do contato escolhido para apagar. No rota colocamos **:id**, isso ja deixa-a dinâmica e no código SQL colocamos o **WHERE id = ?**. No query é o mesmo processo repetido nos passos anteriores.
+- Agora para deletar o contato é simples. Fazemos uma rota dinâmica com o id do contato escolhido para apagar. No rota colocamos **:id**, isso ja deixa dinâmica e no código SQL colocamos o **WHERE id = ?**. No query é o mesmo processo repetido nos passos anteriores.
 
 ```js
 app.delete('/delete/:id', (req, res) => {
@@ -180,4 +180,4 @@ function deleteContact() {
 
 😎 Obrigado e aguardem os próximos projetos!!
 
-<a href='https://instagram.com/gevolgdev/'>Link do Reels desse projeto</a>
+<a href='https://instagram.com/gevolgdev/' target='blank'>Link do Reels desse projeto</a>
